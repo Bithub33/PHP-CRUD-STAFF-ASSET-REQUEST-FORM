@@ -1,0 +1,320 @@
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('webfonts/Montserrat.ttf');
+}
+
+
+
+.navbar{
+    background: #1d1063;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    top: 0;
+    height: 40px;
+    box-shadow: 2px 2px rgba(0, 0, 0, .3);
+
+}
+
+.navbar h4{
+    color: #fff;
+}
+
+.layout{
+    display: none;
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.container{
+    display: none;
+}
+
+.side_nav{
+    width: 340px;
+    padding: 10px;
+    align-self: flex-start;
+    background: #6a56d8;
+    height: 100vh;
+    top: 70px;
+    overflow-y: hidden;
+    transition: width 0.3s ease;
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, .3);
+
+}
+
+.side_nav a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #d1cccc;
+    padding: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 97%;
+    font-size: 15px;
+    
+}
+
+.side_nav a:hover{
+    background: #1876f2;
+    color: #fff;
+    
+}
+
+.side_nav a i{
+    width: 40px;
+    margin-right: 15px;
+    color: #fff;
+
+}
+
+.side_nav a h4{
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+}
+
+.side_nav a h4:hover{
+    font-size: 16px;
+}
+
+.content h4{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.layout.active{
+    display: block;
+}
+
+.container.active{
+    display: block;
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+.newr{
+    display: none;
+    margin-top: 10px;
+}
+
+.newr.active{
+    display: block;
+    padding-top: 10px;
+}
+
+.fil{
+    display: flex;
+    gap: 10px;
+}
+
+.pg{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.list,.items{
+    display: flex;
+    
+}
+.items{
+    gap: 10px;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.items h4{
+    font-size: 15px;
+}
+
+.check{
+    height: 16px;
+    width: 16px;
+    margin-bottom: 5px;
+}
+
+.pp.active{
+    background: #1876f2;
+    color: #fff;
+    margin-left: 10px;
+    transition: margin-left 0.3s ease;
+}
+.sec.active{
+    font-size: 16px;
+}
+
+.opt{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.column{
+    width: 100%;
+}
+
+.column label{
+    font-size: 14px;
+}
+
+.column span{
+    font-size: 14px;
+}
+
+#internet{
+    display: none;
+}
+
+#infras{
+    display: none;
+}
+
+#internet.active{
+    display: block;
+    transition: margin-top 0.3s ease;
+}
+
+#infras.active{
+    display: block;
+    transition: margin-top 0.3s ease;
+}
+
+.type{
+    display: flex;
+    gap: 30px;
+}
+
+.type_1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+   
+}
+
+.type_2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+   
+}
+
+.type_1 h4{
+    font-size: 14px;
+}
+
+.type_2 h4{
+    font-size: 14px;
+}
+
+.type_1 input{
+    height: 16px;
+    width: 16px;
+    margin-top: 10px;
+}
+
+.type_2 input{
+    height: 16px;
+    width: 16px;
+    margin-top: 10px;
+}
+
+.infras_rep{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.infras_rep input{
+    height: 16px;
+    width: 16px;
+    margin-top: 10px;
+}
+
+.infras_rep h4{
+    font-size: 14px;
+}
+
+#infras_hard,#infras_soft,.repl,.soft_repl{
+    display: none;
+}
+
+#infras_hard.active,#infras_soft.active,
+.repl.active,.soft_repl.active{
+    display: block;
+}
+
+#hard-ta{
+    width: 100%;
+}
+
+
+#space{
+    display: flex;
+    height: 100px;
+}
+
+table{
+    border-radius: 20px;
+    padding: 10px;
+}
+
+th{
+    font-size: 10.5px;
+    height: 50px;
+    text-align: center;
+}
+
+td{
+    font-size: 10.5px;
+    text-align: center;
+}
+
+.cont{
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.ma{
+    height: 100%;
+    overflow: auto;
+}
+
+.data{
+    display: block;
+    width: 80%;
+    height: 100%;
+    padding: 30px;
+}
+
+.internet{
+    display: none;
+    width: 50%;
+}
+

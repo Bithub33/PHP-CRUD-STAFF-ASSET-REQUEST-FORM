@@ -1,0 +1,383 @@
+[	
+	{
+        "name": "FOOD CUPBOARD",
+        "icon":"pizzimg/pizza.png",
+        "items": [
+            {
+                "name": "BETTY CROCKER SUPERMOIST CAKEMIX CARROT 425G",
+                "desc": "Betty Crocker Supermoist Cakemix Carrot 425G",
+                "price": "71.99",
+                "image": "https://demo8.1hour.in/media/products/18366.png"
+            },
+            {
+                "name": "GOYA VIENNA SAUSAGE 142Gms 46Oz",
+                "desc": "Goya Vienna Sausage 142Gms 46Oz",
+                "price": "2.40",
+                "image": "https://demo8.1hour.in/media/products/18356.png"
+            },
+            {
+                "name": "ADITYA FRESH ATTA 5 Kg",
+                "desc": "Aditya Fresh Atta 5 Kg",
+                "price": "65.90",
+                "image": "https://demo8.1hour.in/media/products/18886.png"
+            },
+            {
+                "name": "STLOUIS PURE SUGAR CUBES 500G",
+                "desc": "Stlouis Pure Sugar Cubes 500G",
+                "price": "21.99",
+                "image": "https://demo8.1hour.in/media/products/19383.png"
+            },
+            {
+                "name": "FARAGELLO STRAWBERRY JAM IN JARS 450Gm",
+                "desc": "Faragello Strawberry Jam In Jars 450Gm",
+                "price": "6.99",
+                "image": "https://demo8.1hour.in/media/products/19388.png"
+                
+            },
+            {
+                "name": "FARAGELLO PINEAPPLE JAM IN JAR 450GM",
+                "desc": "Faragello Pineapple Jam In Jar 450GM",
+                "price": "2.99",
+                "image": "https://demo8.1hour.in/media/products/19396.png"
+                
+            },
+            {
+                "name": "KELLOGGS CORNFLAKES BAG PACK 550G",
+                "desc": "Kelloggs Cornflakes Bag Pack 550G",
+                "price": "19.99",
+                "image": "https://demo8.1hour.in/media/products/12981.png"
+                
+            },
+            {
+                "name": "CHTUARA FIELDS FOUL WITH HOMMOS 400Gr",
+                "desc": "Chtaura Fields Foul With Hommos 400Gr",
+                "price": "7.59",
+                "image": "https://demo8.1hour.in/media/products/19576.png"
+                
+            },
+            {
+                "name": "CHINGS HAKKA VEG NOODLES 560G",
+                "desc": "Chings Hakka Veg Noodles 560G",
+                "price": "3.75",
+                "image": "https://demo8.1hour.in/media/products/19744.png"
+                
+            },
+            {
+                "name": "MOTHERS RECIPE BIRYANI PASTE 300G",
+                "desc": "Mothers Recipe Biryani Paste 300G",
+                "price": "2.99",
+                "image": "https://demo8.1hour.in/media/products/19980.png"
+                
+            }
+        ]
+    },
+	{
+		"name":"BEVERAGES",
+        "icon":"pizzimg/appetizer.png",
+		"items": [
+			{
+				"name": "TWININGS CHERRY+CINNAMON HT HS 20S",
+				"desc":"Twinings Cherry+Cinnamon Ht Hs 20S",
+				"price":"21.99",
+				"image":"https://demo8.1hour.in/media/products/18762.png"
+				
+			},
+			{
+				"name": "TWINING BLUEBERRY+APPLE HT HS 20S",
+				"desc":"Twinings Blueberry+Apple Ht Hs 20S",
+				"price":"21.99",
+				"image":"https://demo8.1hour.in/media/products/18760.png"
+				
+			},
+			{
+				"name": "NESQUIK CHOCOLATE POWDER US 10Oz",
+				"desc":"Nesquik Chocolate Powder Us 10Oz",
+				"price":"30.99",
+				"image":"https://demo8.1hour.in/media/products/18357.png"
+				
+			},
+			{
+				"name": "OVALTINE 800G",
+				"desc": "Ovaltine 800G",
+				"price": "156.99",
+				"image": "https://demo8.1hour.in/media/products/17328.png"
+				
+			},
+			{
+				"name": "TATA TEA PREMIUM PEARL 1Kg",
+				"desc":"Tata Tea Premium Pearl 1Kg",
+				"price":"21.25",
+				"image":"https://demo8.1hour.in/media/products/17445.png"
+				
+			},
+			{
+				"name": "ALVARO PEAR 330Ml",
+				"desc":"Alvaro Pear 330Ml",
+				"price":"8.99",
+				"image":"https://demo8.1hour.in/media/products/14538.png"
+			},
+			{
+				"name": "NAJJAR COFFEE BLUE 200G",
+				"desc":"Najjar Coffee Blue 200G",
+				"price":"25.99",
+				"image":"https://demo8.1hour.in/media/products/19632.png"
+				
+			},
+			{
+				"name": "NESTLE FATFREE COFFEEMATE 12 453Gm",
+				"desc":"Nestle Fatfree Coffeemate 12 453Gm",
+				"price":"68.99",
+				"image":"https://demo8.1hour.in/media/products/19640_uf55RKc.png"
+			},
+			{
+				"name": "DON SIMON PEAR & PINEAPPLE JUICE 1L",
+				"desc": "Don Simon Pear & Pineapple Juice 1L",
+				"price": "2.60",
+				"image": "https://demo8.1hour.in/media/products/12167.png"
+				
+			},
+			{
+				"name": "DIMES CAN SOUR CHERRY 330Ml",
+				"desc": "Dimes Can Sour Cherry 330Ml",
+				"price": "1.80",
+				"image": "https://demo8.1hour.in/media/products/12127.png"
+				
+			}
+		]
+	},
+	{
+		"name": "SNACKS",
+        "icon":"pizzimg/rice.png",
+		"items":[
+			{
+				"name": "PRINGLES CHEESE & ONION 200G",
+				"desc":"Pringles Cheese & Onion 200G",
+				"price":"39.99",
+				"image":"https://demo8.1hour.in/media/products/20132.png"
+				
+			},
+			{
+				"name": "PRINGLES SALT & VINEGAR 165G",
+				"desc":"Pringles Salt & Vinegar 165G",
+				"price":"11.99",
+				"image":"https://demo8.1hour.in/media/products/20130.png"
+				
+			},
+            {
+				"name": "PRINGLES ORIGINAL 149G",
+				"desc":"Pringles Original 149G",
+				"price":"26.99",
+				"image":"https://demo8.1hour.in/media/products/20128.png"
+				
+			},
+            {
+				"name": "NESTLE AFTER EIGHT MINT TIN 300G",
+				"desc":"Nestle After Eight Mint Tin 300G",
+				"price":"0.00",
+				"image":"https://demo8.1hour.in/media/products/18823.png"
+				
+			}
+            ,
+            {
+				"name": "BAKER MINI CHEDDARS CHESE ONION BISCUIT 33G",
+				"desc":"Baker Mini Cheddars Chese Onion Biscuit 33G",
+				"price":"0.00",
+				"image":"https://demo8.1hour.in/media/products/18827.png"
+				
+			}
+            ,
+            {
+				"name": "BRITANNIA WAFFERS CHOCOLATE 175Gm",
+				"desc":"Britannia Waffers Chocolate 175Gm",
+				"price":"1.99",
+				"image":"https://demo8.1hour.in/media/products/18936.png"
+				
+			}
+            ,
+            {
+				"name": "HERSHEYS REESES PEANUT BUTTER CUP 51G",
+				"desc":"Hersheys Reeses Peanut Butter Cup 51G",
+				"price":"9.99",
+				"image":"https://demo8.1hour.in/media/products/18960_1.png"
+				
+			}
+            ,
+            {
+				"name": "MARILAN CREAM CRACKER 200G",
+				"desc":"Marilan Cream Cracker 200G",
+				"price":"5.49",
+				"image":"https://demo8.1hour.in/media/products/14295.png"
+				
+			}
+            ,
+            {
+				"name": "HERSHEYS REESES MINITURES POUCH 72G",
+				"desc":"Hersheys Reeses Miniatures Pouch 72G",
+				"price":"15.99",
+				"image":"https://demo8.1hour.in/media/products/19001.png"
+				
+			}
+            ,
+            {
+				"name": "NESTLE MILKYBAR COOKIES&CREAM 90G",
+				"desc":"Nestle Milkybar Cookies&Cream 90G",
+				"price":"64.99",
+				"image":"https://demo8.1hour.in/media/products/13956.png"
+				
+			}
+		]
+	},
+	{
+		"name": "HOUSEHOLD",
+        "icon":"pizzimg/drink.png",
+		"items": [
+			{
+				"name": "HIT INSECTICIDE SPRAY LEMON 400Ml",
+				"desc": "Hit Insecticide Spray Lemon 400Ml",
+				"price": "7.50",
+				"image":"https://demo8.1hour.in/media/products/18736.png"
+				
+			},
+			{
+				"name": "HIT INSECTICIDE SPRAY GREEN TEA 400Ml",
+				"desc": "Hit Insecticide Spray Green Tea 400Ml",
+				"price": "7.40",
+				"image":"https://demo8.1hour.in/media/products/18731.png"
+				
+			},
+			{
+				"name": "SPLASH AIR REFRESHENER LAVENDER 300Ml",
+                "desc": "Splash Air Refreshener Lavender 300Ml",
+                "price": "7.99",
+                "image": "https://demo8.1hour.in/media/products/18723.png"
+                
+			},
+            {
+                "name": "COMFORT FABRIC CONDITIONER PINK 2L",
+                "desc": "Comfort Fabric Conditioner Pink 2L",
+                "price": "33.50",
+                "image": "https://demo8.1hour.in/media/products/11695.png"
+                
+            },
+            {
+                "name": "COMFORT FABRIC CONDITIONER BLUE 2L",
+                "desc": "Comfort Fabric Conditioner Blue 2L",
+                "price": "33.50",
+                "image": "https://demo8.1hour.in/media/products/11693.png"
+                
+            },
+            {
+                "name": "GLADE AEROSOL LEMON AIRFRESHNER CAN 300Ml",
+                "desc": "Glade Aerosol Lemon Airfreshner Can 300Ml",
+                "price": "42.99",
+                "image": "https://demo8.1hour.in/media/products/14375.png"
+                
+            },
+            {
+                "name": "GLADE AEROSOL LAVENDAR AIRFRESHNER CAN 300Ml",
+                "desc": "Glade Aerosol Lavendar Airfreshner Can 300Ml",
+                "price": "42.99",
+                "image": "https://demo8.1hour.in/media/products/14372.png"
+                
+            },
+            {
+                "name": "DURU FRESH SEN OCEAN BREEZE 150G",
+                "desc": "Duru Fresh Sen Ocean Breeze 150G",
+                "price": "3.75",
+                "image": "https://demo8.1hour.in/media/products/13005.png"
+                
+            }
+            ,
+            {
+                "name": "AIRPRO SCENTED OIL TEA TREE REFILL",
+                "desc": "Airpro Scented Oil Tea Tree Refill",
+                "price": "57.99",
+                "image": "https://demo8.1hour.in/media/products/7246.png"
+                
+            },
+            {
+                "name": "HARPIC SUPER ACTIVE BLOCK PINK BLOSSOM 38G",
+                "desc": "Harpic Super Active Block Pink Blossom 38G",
+                "price": "10.49",
+                "image": "https://demo8.1hour.in/media/products/8583.png"
+                
+            }
+		]
+	},
+    {
+        "name": "ALCOHOL",
+        "icon":"pizzimg/dessert.png",
+        "items": [
+            {
+                "name": "BLUE JEANS ENERGY DRINK 250Ml",
+                "desc": "Blue Jeans Energy Drink 250Ml",
+                "price": "12.89",
+                "image": "https://demo8.1hour.in/media/products/13922.png"
+                
+            },
+            {
+                "name": "ARGENTINIAN ANDEAN MALBEC WINE 750Ml",
+                "desc": "Argentinian Andean Malbec Wine 750Ml",
+                "price": "128.99",
+                "image": "https://demo8.1hour.in/media/products/13869.png"
+                
+            },
+            {
+                "name": "ORIGINAL CHOICE DELUXE RHUM 750Ml",
+                "desc": "Original Choice Deluxe Rhum 750Ml",
+                "price": "33.49",
+                "image": "https://demo8.1hour.in/media/products/19836.png"
+                
+            },
+            {
+                "name": "PUSHKIN VODKA 1L",
+                "desc": "Pushkin Vodka 1L",
+                "price": "30.49",
+                "image": "https://demo8.1hour.in/media/products/16366.png"
+                
+            },
+            {
+                "name": "1800 BLANCO TEQUILA 700Ml",
+                "desc": "1800 Blanco Tequila 700Ml",
+                "price": "799.99",
+                "image": "https://demo8.1hour.in/media/products/14804.png"
+                
+            },
+            {
+                "name": "JOSE CUERVO BLUE AGAVE TEQUILA 1L",
+                "desc": "Jose Cuervo Blue Agave Tequila 1L",
+                "price": "72.99",
+                "image": "https://demo8.1hour.in/media/products/14803.png"
+                
+            },
+            {
+                "name": "ABSOLUT VODKA RASPBERRY 1L",
+                "desc": "Absolut Vodka Raspberry 1L",
+                "price": "105.99",
+                "image": "https://demo8.1hour.in/media/products/14744.png"
+                
+            },
+            {
+                "name": "AMARULA CREAM LIQUEUR 1L",
+                "desc": "Amarula Cream Liqueur 1L",
+                "price": "94.99",
+                "image": "https://demo8.1hour.in/media/products/14584.png"
+                
+            },
+            {
+                "name": "AMARULA 2 GLASS PACK WITH GIFT BOX 750Ml",
+                "desc": "Amarula 2 Glass Pack With Gift Box 750Ml",
+                "price": "55.99",
+                "image": "https://demo8.1hour.in/media/products/14583.png"
+                
+            },
+            {
+                "name": "SMIRNOFF ICE 300Ml D573",
+                "desc": "Smirnoff Ice 300Ml D573",
+                "price": "8.99",
+                "image": "https://demo8.1hour.in/media/products/14539.png"
+                
+            }
+        ]
+    }  
+]

@@ -1,0 +1,85 @@
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #d9f1f1;
+    flex-direction: column;
+
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('webfonts/Montserrat.ttf');
+}
+
+*{
+    font-family: Montserrat, sans-serif;
+    box-sizing: border-box;
+}
+
+form{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .3);
+    width: 500px;
+    padding: 30px;
+}
+
+label{
+    
+    font-weight: 500;
+    padding: 10px;
+}
+
+.logo{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+input{
+    display: block;
+    border: 2px solid #ccc;
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+button{
+    float: right;
+    background: #555;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover{
+    opacity: .8;
+}
+
+h1{
+    text-align: center;
+    color: #fff;
+}
+
+a{
+    float: right;
+    background: #555;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: none;
+    text-decoration: none;
+}
+
+a:hover{
+    opacity: .8;
+}
