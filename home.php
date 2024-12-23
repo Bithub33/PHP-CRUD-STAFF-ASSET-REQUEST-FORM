@@ -627,7 +627,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         
                                     }else{
                                         echo "<tr>
-                                                <td colspan='10' >No records found</td>
+                                                <td colspan='11' >No records found</td>
                                                 </tr>";
                                     }
                                 ?>
@@ -845,7 +845,6 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     if($rol != "auditor" && $rol != "staff" )
                                     {
                                         
-                                        
                                                 $result = $conn->query($sql);
 
                                                 if($result->num_rows > 0)
@@ -881,13 +880,21 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                     }
                                                     
                                                 }else{
-                                                    echo "<tr>
-                                                            <td colspan='6' >No records found</td>
+                                                    if($role == 'infrastructure')
+                                                    {
+                                                        echo "<tr>
+                                                            <td colspan='8' >No records found</td>
                                                             </tr>";
+                                                    }else{
+                                                        echo "<tr>
+                                                            <td colspan='7' >No records found</td>
+                                                            </tr>";
+                                                    }
+                                                    
                                                 } 
                                     }else{
                                         echo "<tr>
-                                                <td colspan='6' >No records found</td>
+                                                <td colspan='7' >No records found</td>
                                                 </tr>";
                                     }
                                     
@@ -1215,7 +1222,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     
                                 }else{
                                     echo "<tr>
-                                            <td colspan='7' >No records found</td>
+                                            <td colspan='9' >No records found</td>
                                             </tr>";
                                 }
                             ?>
