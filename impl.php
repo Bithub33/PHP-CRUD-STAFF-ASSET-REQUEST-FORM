@@ -160,7 +160,7 @@
                     $erpusername=clean($_POST['erpid']);$erppass=clean($_POST['erppass']);$erprole=clean($_POST['erprole']);$erpshop=clean($_POST['erpshop']);$erpimprem=clean($_POST['erpimprem']);
 
 
-                    $sql = "UPDATE $table SET Status='DECLINED', ErpUsername='$erpusername',ErpPassword='$erppass',ErpRole='$erprole',ErpShop='$erpshop', Implementedby='$name',ImpDate='$date',ImpRem='$erpimprem', WHERE Ticketid='$id'";
+                    $sql = "UPDATE $table SET Status='DECLINED', ErpUsername='$erpusername',ErpPassword='$erppass',ErpRole='$erprole',ErpShop='$erpshop', Implementedby='$name',ImpDate='$date',ImpRem='$erpimprem' WHERE Ticketid='$id'";
 
                     $result = $conn->query($sql);
                     if($result)
@@ -700,7 +700,7 @@
             <div class="column mb-3">
                 <label for="emailadd" class="">Email Address</label>
                 <div class="">
-                    <input id="emailadd" type="email"value="<?php echo $email?>"  name="emailadd" class="form-control" placeholder="Put N/A if declined" oninput="this.value = this.value.toUpperCase();" required>
+                    <input id="emailadd" type="text"value="<?php echo $email?>"  name="emailadd" class="form-control" placeholder="Put N/A if declined" oninput="this.value = this.value.toUpperCase();" required>
                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                 </div>
                 
