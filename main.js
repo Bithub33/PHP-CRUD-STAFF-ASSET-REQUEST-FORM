@@ -220,8 +220,9 @@ function date(){
             submit(e);
 
         });
-        
-        
+
+
+
     }
     
 }
@@ -235,6 +236,8 @@ btn.forEach(button =>{
     });
 
 });
+
+
 
 /*tabs.forEach((tab,index)=>{
 

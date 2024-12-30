@@ -31,6 +31,10 @@ const err = document.getElementById('err');
 const new_hard = document.getElementById('new_hard');
 const new_soft = document.getElementById('soft_new');
 const round = document.getElementById('round');
+const dec = document.getElementById('decline');
+const lay = document.getElementById('imp');
+const forms = document.getElementById('forms');
+
 var count = 0;
 
 if(inf_check.checked)
@@ -39,3 +43,22 @@ if(inf_check.checked)
 }else{
     inf_lay.classList.remove('active');
 }
+
+forms.addEventListener('submit',(e)=>{
+
+    const action = e.submitter.value;
+    if(action === 'decline'){
+
+        const inputs = lay.querySelectorAll('input');
+        inputs.forEach(input => {
+            if(input.value !== 'N/A')
+            {
+                e.preventDefault();
+                alert('Only type N/A if you want to decline a request');
+                
+            }
+        });
+
+    }
+    
+});

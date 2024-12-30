@@ -8,7 +8,7 @@
     
     $error = "";$table ="";$type = "";$srepl="";
     
-    $id = "";$dat = "";$reqFor = "";$dept ="";$loc = "";$contact = "";$audited = "PENDING";$status = "PENDING";$type = "";$soft_replacement = "";$hrepl = "";$oldHardName = "";$oldHardModel = "";$oldHardSerial = "";$oldTagNum = "";$oldHardCond = "";$newHardName = "";$newHardSerial = "";$newHardModel = "";$newHardCond = "";$softreqtype = "";$oldSoftModel = "";$oldSoftSerial = "";$oldSoftCond = "";$newSoftName = "";$newSoftModel = "";$newSoftSerial = "";$newSoftCond = "";$implementedby = "";$auditedby = "";$sres="";$hres="";$date="";$emailimprem="";$intimprem="";$bioimprem="";$softimprem="";$hardimprem="";$empcode="";$newImpHardName="";$pg="";$reqsites="";$audrem="";$audStatus="";$erpimprem="";
+    $id = "";$dat = "";$reqFor = "";$dept ="";$loc = "";$contact = "";$audited = "PENDING";$status = "PENDING";$type = "";$soft_replacement = "";$hrepl = "";$oldHardName = "";$oldHardModel = "";$oldHardSerial = "";$oldTagNum = "";$oldHardCond = "";$newHardName = "";$newHardSerial = "";$newHardModel = "";$newHardCond = "";$softreqtype = "";$oldSoftModel = "";$oldSoftSerial = "";$oldSoftCond = "";$newSoftName = "";$newSoftModel = "";$newSoftSerial = "";$newSoftCond = "";$implementedby = "";$auditedby = "";$sres="";$hres="";$date="";$emailimprem="";$intimprem="";$bioimprem="";$softimprem="";$hardimprem="";$empcode="";$newImpHardName="";$pg="";$reqsites="";$audrem="";$audStatus="";$erpimprem="";$erpname="";
 
 
     if($_SERVER['REQUEST_METHOD'] == "GET")
@@ -155,18 +155,21 @@
                 }
                 
             }else{
-                if($table == 'erp')
+                if($table === 'erp')
                 {
                     $erpusername=clean($_POST['erpid']);$erppass=clean($_POST['erppass']);$erprole=clean($_POST['erprole']);$erpshop=clean($_POST['erpshop']);$erpimprem=clean($_POST['erpimprem']);
 
+                    if($erpusername === 'N/A' && $erppass === 'N/A' && $erprole === 'N/A' && $erpshop === 'N/A'){
 
-                    $sql = "UPDATE $table SET Status='DECLINED', ErpUsername='$erpusername',ErpPassword='$erppass',ErpRole='$erprole',ErpShop='$erpshop', Implementedby='$name',ImpDate='$date',ImpRem='$erpimprem' WHERE Ticketid='$id'";
+                        $sql = "UPDATE $table SET Status='DECLINED', ErpUsername='$erpusername',ErpPassword='$erppass',ErpRole='$erprole',ErpShop='$erpshop', Implementedby='$name',ImpDate='$date',ImpRem='$erpimprem' WHERE Ticketid='$id'";
 
-                    $result = $conn->query($sql);
-                    if($result)
-                    {
-                        header("Location: home.php?page=$pg");
-                        exit;
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
                     }
                 }
 
@@ -174,13 +177,17 @@
                 {
                     $email=clean($_POST['emailadd']); $imp=clean($_POST['emailimprem']);
 
-                    $sql = "UPDATE $table SET Status='DECLINED',Email='$email', Implementedby='$name',ImpRem='$imp',ImpDate='$date' WHERE Ticketid='$id'";
+                    if($email == 'N/A'){
 
-                    $result = $conn->query($sql);
-                    if($result)
-                    {
-                        header("Location: home.php?page=$pg");
-                        exit;
+                        $sql = "UPDATE $table SET Status='DECLINED',Email='$email', Implementedby='$name',ImpRem='$imp',ImpDate='$date' WHERE Ticketid='$id'";
+
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
                     }
                 }
 
@@ -196,34 +203,58 @@
                         header("Location: home.php?page=$pg");
                         exit;
                     }
+                    
                 }
 
                 if($table == 'internet')
                 {
                     $sites=clean($_POST['gsites']);$imp=clean($_POST['intimprem']);
 
-                    $sql = "UPDATE $table SET Status='DECLINED', Sites='$sites',ImpRem='$imp', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+                    if($sites == 'N/A'){
 
-                    $result = $conn->query($sql);
-                    if($result)
-                    {
-                        header("Location: home.php?page=$pg");
-                        exit;
+                        $sql = "UPDATE $table SET Status='DECLINED', Sites='$sites',ImpRem='$imp', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
                     }
+                    
                 }
 
-                if($table == 'infrastructure')
+                if($table === 'infrastructure')
                 {
-                    $newHardName = clean(isset($_POST['newhname']) ? $_POST['newhname']:'');$newHardModel = clean(isset($_POST['newhmod'])?$_POST['newhmod']:'');$newHardCond = clean(isset($_POST['newhcond']) ? $_POST['newhcond']:'');$newHardSerial = clean(isset($_POST['newhser'])?$_POST['newhser']:'');$imp=clean(isset($_POST['softimprem'])?$_POST['softimprem']:'');$newimphname=isset($_POST['newimphname']) ? $_POST['newimphname']:'';$imp = isset($_POST['hardimprem']) ? $_POST['hardimprem']:'';
+                    if($type == 'HARDWARE'){
 
-                    $sql = "UPDATE $table SET Status='DECLINED',NewHardModel='$newHardModel',NewHardSerial='$newHardSerial',NewHardCond='$newHardCond',ImpRem='$imp',NewImpHardName='$newimphname', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+                        $newHardName = clean(isset($_POST['newhname']) ? $_POST['newhname']:'');$newHardModel = clean(isset($_POST['newhmod'])?$_POST['newhmod']:'');$newHardCond = clean(isset($_POST['newhcond']) ? $_POST['newhcond']:'');$newHardSerial = clean(isset($_POST['newhser'])?$_POST['newhser']:'');$imp=clean(isset($_POST['softimprem'])?$_POST['softimprem']:'');$newimphname=isset($_POST['newimphname']) ? $_POST['newimphname']:'';$imp = isset($_POST['hardimprem']) ? $_POST['hardimprem']:'';
 
-                    $result = $conn->query($sql);
-                    if($result)
-                    {
-                        header("Location: home.php?page=$pg");
-                        exit;
+                        $sql = "UPDATE $table SET Status='DECLINED',NewHardModel='$newHardModel',NewHardSerial='$newHardSerial',NewHardCond='$newHardCond',ImpRem='$imp',NewImpHardName='$newimphname', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
+                    }else{
+
+                        $imp=clean(isset($_POST['softimprem'])?$_POST['softimprem']:'');
+
+                        $sql = "UPDATE $table SET Status='DECLINED',ImpRem='$imp',Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
                     }
+                    
                 }
             }
             
@@ -256,7 +287,7 @@
 
 <div id="re" class="cont">
 <div class="data">
-<form method="post" id="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" class="reqq">
+<form method="post" id="forms" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" class="reqq">
 
 <div class="con">
     <div class="list">
@@ -357,6 +388,7 @@
         <div class="opt">
 
             <input type="hidden" value="<?php echo $table ?>" name="table">
+            <input type="hidden" value="<?php echo $type ?>" name="type">
             <input type="hidden" value="<?php echo $id ?>" name="id">
             <input type="hidden" value="<?php echo $pg ?>" name="pg">
             <div class="column mb-3">
@@ -634,7 +666,7 @@
         
     </div>
 
-    <div class="con mt-3">
+    <div id="imp" class="con mt-3">
         <?php
         ?><h4>Implementor Section</h4><?php
         if($table === 'erp')
@@ -683,7 +715,7 @@
             <div class="column mb-3">
                 <label for="erpimprem" class="">Implementor Remarks*</label>
                 <div class="">
-                    <input id="erpimprem" type="text" value="<?php echo $erpimprem?>"  name="erpimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                    <textarea id="erpimprem" type="text" name="erpimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required><?php echo $erpimprem?></textarea>
                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                 </div>
                 
@@ -700,7 +732,7 @@
             <div class="column mb-3">
                 <label for="emailadd" class="">Email Address</label>
                 <div class="">
-                    <input id="emailadd" type="text"value="<?php echo $email?>"  name="emailadd" class="form-control" placeholder="Put N/A if declined" oninput="this.value = this.value.toUpperCase();" required>
+                    <input id="emailadd" type="text" value="<?php echo $email?>" name="emailadd" class="form-control" placeholder="Put N/A if declined" oninput="this.value = this.value.toUpperCase();" required>
                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                 </div>
                 
@@ -711,7 +743,7 @@
             <div class="column mb-3">
                 <label for="emailimprem" class="">Implementor Remarks*</label>
                 <div class="">
-                    <input id="emailimprem" type="text" value="<?php echo $emailimprem?>"  name="emailimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                    <textarea id="emailimprem" type="text" name="emailimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required><?php echo $emailimprem?></textarea>
                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                 </div>
                 
@@ -729,7 +761,7 @@
             <div class="column mb-3">
                 <label for="bioimprem" class="">Implementer Remarks</label>
                 <div class="">
-                    <input id="bioimprem" type="text" value="<?php echo $bioimprem?>"  name="bioimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                    <textarea id="bioimprem" type="text" name="bioimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required><?php echo $bioimprem?></textarea>
                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                 </div>
                 
@@ -757,7 +789,7 @@
             <div class="column mb-3">
                 <label for="intimprem" class="">Implementor Remarks*</label>
                 <div class="">
-                    <input id="intimprem" type="text" value="<?php echo $intimprem?>"  name="intimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                    <textarea id="intimprem" type="text" name="intimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required><?php echo $intimprem?></textarea>
                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                 </div>
                 
@@ -776,7 +808,7 @@
                     <div class="column mb-3">
                         <label for="softimprem" class="">Implementor Remarks</label>
                         <div class="">
-                            <input id="softimprem" type="text" value="<?php echo $softimprem?>"  name="softimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                            <textarea id="softimprem" type="text" name="softimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required><?php echo $softimprem?></textarea>
                             <span id="err" style="color: red; display: none">Field cannot be empty</span>
                         </div>
                         
@@ -833,7 +865,7 @@
                         <div class="column mb-3">
                             <label for="hardimprem" class="">Implementor Remarks</label>
                             <div class="">
-                                <input id="hardimprem" type="text" value="<?php echo $hardimprem?>"  name="hardimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                                <textarea id="hardimprem" type="text" name="hardimprem" class="form-control" oninput="this.value = this.value.toUpperCase();" required><?php echo $hardimprem?></textarea>
                                 <span id="err" style="color: red; display: none">Field cannot be empty</span>
                             </div>
                         
@@ -898,12 +930,12 @@
         ?>
         <div class="row mb-3">
             <div class="col-sm-3 d-grid mt-5">
-                <button  type="submit" name="action" value="approve" class="btn btn-primary" disabled>
+                <button id="approve" type="submit" name="action" value="approve" class="btn btn-primary" disabled>
                     Approve
                 </button>
             </div>
             <div class="col-sm-3 d-grid mt-5">
-                <button  type="submit" name="action" value="decline" class="bt btn btn-outline-primary" disabled>
+                <button id="decline" type="submit" name="action" value="decline" class="bt btn btn-outline-primary" disabled>
                     Decline
                 </button>
             </div>
@@ -913,12 +945,12 @@
         ?>
         <div class="row mb-3">
             <div class="col-sm-3 d-grid mt-5">
-                <button  type="submit" name="action" value="approve" class="btn btn-primary">
+                <button id="approve"  type="submit" name="action" value="approve" class="btn btn-primary">
                     Approve
                 </button>
             </div>
             <div class="col-sm-3 d-grid mt-5">
-                <button  type="submit" name="action" value="decline" class="bt btn btn-outline-primary">
+                <button id="decline"  type="submit" name="action" value="decline" class="bt btn btn-outline-primary">
                     Decline
                 </button>
             </div>
