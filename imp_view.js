@@ -26,14 +26,14 @@ const hard_lay = document.getElementById("infras_hard");
 const soft_lay = document.getElementById("infras_soft");
 const repl = document.getElementById('repl');
 const soft_repl = document.getElementById('soft_repl');
-const num_inp = document.getElementById('num_inp');
-const err = document.getElementById('err');
 const new_hard = document.getElementById('new_hard');
 const new_soft = document.getElementById('soft_new');
 const round = document.getElementById('round');
 const dec = document.getElementById('decline');
 const lay = document.getElementById('imp');
+const lay_user = document.getElementById('imp');
 const forms = document.getElementById('forms');
+const forms_user = document.getElementById('forms_user');
 
 var count = 0;
 
@@ -62,3 +62,18 @@ forms.addEventListener('submit',(e)=>{
     }
     
 });
+
+forms_user.addEventListener('submit',(e)=>{
+
+    const num_inp = document.getElementById('pass');
+    const err = document.getElementById('error');
+
+    if(num_inp.value.length !== 8){
+        e.preventDefault();
+        err.style.display = 'block';
+    }else{
+        err.style.display = 'none';
+    }
+    
+});
+

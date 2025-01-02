@@ -18,6 +18,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="css/all.min.css"/>
     <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="icon" href="favicon.png" type="image/png">
     <script>
         window.onload = function(){
             if(!<?php echo isset($_SESSION['userid']) ? 'true' : 'false';?>)
@@ -55,35 +56,41 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
             <div class="side_nav collapsed" id="side_bar">
                 
                 <?php
-                if($_SESSION['role'] === 'staff')
+                if($_SESSION['role'] === 'STAFF')
                 {
                     ?>
-                    <a class='pp active' href='#'><i class='fa-solid fa-table'></i><h4 class='sec'>Employee Request</h4></a>
+                    <a class='pp' href='#'><i class='fa-solid fa-table'></i><h4 class='sec'>Request</h4></a>
                     <?php
                 }
-                if($_SESSION['role'] === 'erp' || $_SESSION['role'] === 'email' || $_SESSION['role'] === 'biometric' || $_SESSION['role'] === 'internet' || $_SESSION['role'] === 'infrastructure')
+                if($_SESSION['role'] === 'ERP' || $_SESSION['role'] === 'EMAIL' || $_SESSION['role'] === 'BIOMETRIC' || $_SESSION['role'] === 'INTERNET' || $_SESSION['role'] === 'INFRASTRUCTURE')
                 {
                     ?>
-                    <a class='pp active' href='#'><i class='fa-solid fa-check'></i><h4 class='sec active'>Implementor</h4></a>
+                    <a class='pp' href='#'><i class='fa-solid fa-check'></i><h4 class='sec'>Requests</h4></a>
                     <?php
                 }
-                if($_SESSION['role'] === 'auditor')
+                if($_SESSION['role'] === 'AUDITOR')
                 {
                     ?>
-                    <a class='pp active' href='#'><i class='fa-solid fa-list-check'></i><h4 class='sec active'>Auditor</h4></a>
+                    <a class='pp' href='#'><i class='fa-solid fa-list-check'></i><h4 class='sec'>Requests</h4></a>
+                    <?php
+                }
+                if($_SESSION['level'] === 'YES')
+                {
+                    ?>
+                    <a class='pp' href='#'><i class='fa-solid fa-list-check'></i><h4 class='sec'>Users</h4></a>
                     <?php
                 }
                 ?>
-                <a class="" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i><h4>Logout</h4></a>
+                <a id="logout" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i><h4>Logout</h4></a>
             </div>
 
             <?php
                 
-                if($_SESSION['role'] === 'staff')
+                if($_SESSION['role'] === 'STAFF')
                 {
                     $name = $_SESSION['name'];
                     ?>
-                    <div id="request" class="container active">
+                    <div id="request" class="container">
                         <h2>Employee Request Form</h2>
                         <button id="btn" class="bt btn btn-primary">New Request</button>
                         <div id="nr" class="newr mt-5">
@@ -174,7 +181,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                             <div class="column mb-3">
                                                 <label for="loc" class="">Employee Code*</label>
                                                 <div class="">
-                                                    <input id="loc" type="text" name="empcode" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                                                    <input id="empcode" type="text" name="empcode" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
                                                 </div>
                                                 
                                             </div>
@@ -306,7 +313,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                     <div class="column mb-3">
                                                         <label for="drop" style="align-self: center;">Software Request Type</label>
                                                         <div class="">
-                                                            <select style="width: 50%;" name="stype" class="form-select" id="drop">
+                                                            <select style="width: 50%;" name="stype" class="form-select" id="drop_soft">
                                                                 <option value="Software Install" >Software Install</option>
                                                                 <option value="Software Update" >Software Update</option>
                                                                 
@@ -356,7 +363,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                         </div>
                         <h3 class="mt-5">Request lists</h3>
                         <div class="filter">
-                            <form method="GET" action="" id="form">
+                            <form method="GET" action="" id="form_fils">
                                 <div class="fil mb-1">
                                     <div class="column">
                                         <label for="st_date_fil" class="">Start Date</label>
@@ -401,7 +408,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     <div class="column">
                                         <label for="aud-drop" class="">Request Type</label>
                                         <div class="">
-                                            <select name="req_type" class="form-select" id="req-type">
+                                            <select name="req_type" class="form-select" id="role">
                                                 <option value="All" <?= isset($_GET['req_type']) && $_GET['req_type'] == 'All'? 'selected':'';?>>All</option>
                                                 <option value="erp" <?= isset($_GET['req_type']) && $_GET['req_type'] == 'erp'? 'selected':'';?>>Erp</option>
                                                 <option value="email" <?= isset($_GET['req_type']) && $_GET['req_type'] == 'email'? 'selected':'';?>>Email</option>
@@ -696,11 +703,11 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                     <?php
                 }
 
-                if($_SESSION['role'] === 'erp' || $_SESSION['role'] === 'email' || $_SESSION['role'] === 'biometric' || $_SESSION['role'] === 'internet' || $_SESSION['role'] === 'infrastructure')
+                if($_SESSION['role'] === 'ERP' || $_SESSION['role'] === 'EMAIL' || $_SESSION['role'] === 'BIOMETRIC' || $_SESSION['role'] === 'INTERNET' || $_SESSION['role'] === 'INFRASTRUCTURE')
                 {
                     $role = $_SESSION['role'];
                     ?>
-                    <div id="request" class="container active">
+                    <div id="request" class="container">
                         <h2 class=""><?php echo isset($role) ? ucfirst($role): 'Implementor';?> Request Lists</h2>
                         <div class="filter">
                         <form method="GET" action="" id="form">
@@ -985,10 +992,10 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                     <?php
                 }
 
-                if($_SESSION['role'] === 'auditor')
+                if($_SESSION['role'] === 'AUDITOR')
                 {
                     ?>
-                    <div id="request" class="container active">
+                    <div id="request" class="container">
                     <h2 class="">Auditor Request lists</h2>
                     <div class="filter">
                         <form method="GET" action="" id="form">
@@ -1288,6 +1295,363 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                     </div>
                     </div>
+                    <?php
+                }
+
+                if($_SESSION['level'] === 'YES')
+                {
+                    $name = $_SESSION['name'];
+                    ?>
+                    <div id="request" class="container">
+                        <h2>Users</h2>
+                        <button id="btn_user" class="bt btn btn-primary">Create User</button>
+                        <div id="nr_user" class="newr mt-2">
+                            
+                            <form method="POST" id="forms" action="create_user.php" class="req">
+
+                                <div class="content">
+                                    <div class="staff-det">
+                                        <h4>Personal Details</h4>   
+                                        <div class="opt">
+
+                                            <div class="column mb-3">
+                                                <label for="u_name" class="">Username*</label>
+                                                <div class="">
+                                                    <input type="text" name="u_name" id="u_name" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="column mb-3">
+                                                <label for="name" class="">Name*</label>
+                                                <div class="">
+                                                    <input type="text" name="name" id="name" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="opt">
+                                            <div class="column mb-3">
+                                                <label for="dep" class="">User Id (Staff Id)*</label>
+                                                <div class="">
+                                                    <input type="text" name="u_id" id="u_id" class="form-control" oninput="this.value = this.value.toUpperCase();" required>
+                                                    <span id="err_id" style="color: red; display: none">User Id already exist</span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="column mb-3">
+                                                <label for="req" class="">Role</label>
+                                                <div class="">
+                                                    <select name="role" class="form-select" id="role">
+                                                        <option value="STAFF" >STAFF</option>
+                                                        <option value="AUDITOR" >AUDITOR</option>
+                                                        <option value="EMAIL" >EMAIL</option>
+                                                        <option value="ERP" >ERP</option>
+                                                        <option value="BIOMETRIC" >BIOMETRIC</option>
+                                                        <option value="INTERNET" >INTERNET</option>
+                                                        <option value="INFRASTRUCTURE" >INFRASTRUCTURE</option>
+                                                    </select>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="opt">
+
+                                            <div class="column mb-3">
+                                                <label for="u_name" class="">Password*</label>
+                                                <div class="">
+                                                    <input type="password" name="pass" id="pass" class="form-control" minlength="8" placeholder="Password length should be at least 8" required>
+                                                    <span id="err" style="color: red; display: none">Passwords do not match</span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="column mb-3">
+                                                <label for="name" class="">Confirm Password*</label>
+                                                <div class="">
+                                                    <input type="password" name="u_pass_con" id="pass_con" class="form-control" required>
+                                                    <span id="err" style="color: red; display: none">Passwords do not match</span>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="con">
+                                            <div class="list">
+                                                <div class="items_user">
+                                                    <input type="checkbox" name="level" value="YES" class="check_user">
+                                                    <h4>Admin</h4>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3 d-grid mt-5">
+                                            <button  type="submit" class="btn btn-primary">
+                                                Create
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-3 d-grid mt-5">
+                                            <a  type="submit" href="" class="bt btn btn-outline-primary" role="button">
+                                                Cancel
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                        
+                            </form>
+                        </div>
+                        <h3 class="mt-5">Users lists</h3>
+                        <div class="filter">
+                            <form method="GET" action="" id="form_fil">
+                                <div class="fil mb-1">
+                                    <div class="column">
+                                        <label for="imp-drop" class="">Name</label>
+                                        <div class="">
+                                            <input type="text" name="name_fil" id="name_fil" value="<?= isset($_GET['name_fil']) ? $_GET['name_fil'] : '';?>" class="form-control">
+                                        </div>
+                                                
+                                    </div>
+                                    <div class="column">
+                                        <label for="aud-drop" class="">User Id</label>
+                                        <div class="">
+                                            <input type="text" name="user_id_fil" id="user_id_fil" value="<?= isset($_GET['user_id_fil']) ? $_GET['user_id_fil'] : '';?>" class="form-control">
+                                        </div>
+                                                
+                                    </div>
+                                    <div class="column">
+                                        <label for="aud-drop" class="">Username</label>
+                                        <div class="">
+                                            <input type="text" name="user_name_fil" id="user_name_fil" value="<?= isset($_GET['user_name_fil']) ? $_GET['user_name_fil'] : '';?>" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="column mb-3">
+                                        <label for="imp_by" class="">Admin</label>
+                                        <select name="admin" class="form-select" id="admin">
+                                            <option value="---" <?= isset($_GET['admin']) && $_GET['admin'] == '---'? 'selected':'';?>>---</option>
+                                            <option value="YES" <?= isset($_GET['admin']) && $_GET['admin'] == 'YES'? 'selected':'';?>>YES</option>
+                                            <option value="NO" <?= isset($_GET['admin']) && $_GET['admin'] == 'NO'? 'selected':'';?>>NO</option>
+                                        </select>
+                                                
+                                    </div>
+                                
+                                    <div class="col mt-4">
+                                            <button  type="submit" class="btn btn-primary">
+                                                Filter
+                                            </button>
+                                    </div>
+                                    <div class="col mt-4">
+                                            <a  type="submit" href="home.php" class="bt btn btn-outline-primary" role="button">
+                                                Reset
+                                            </a>
+                                    </div>
+                                </div>
+
+                                <div class="fil mb-5">
+                                    <div class="column" style="width: 210px;">
+                                        <label for="aud-drop" class="">Request Type</label>
+                                        <div class="">
+                                            <select name="role" class="form-select" id="role">
+                                                <option value="ALL" <?= isset($_GET['role']) && $_GET['role'] == 'ALL'? 'selected':'';?>>ALL</option>
+                                                <option value="ERP" <?= isset($_GET['role']) && $_GET['role'] == 'ERP'? 'selected':'';?>>ERP</option>
+                                                <option value="EMAIL" <?= isset($_GET['role']) && $_GET['role'] == 'EMAIL'? 'selected':'';?>>EMAIL</option>
+                                                <option value="INTERNET" <?= isset($_GET['role']) && $_GET['role'] == 'INTERNET'? 'selected':'';?>>INTERNET</option>
+                                                <option value="BIOMETRIC" <?= isset($_GET['role']) && $_GET['role'] == 'BIOMETRIC'? 'selected':'';?>>BIOMETRIC</option>
+                                                <option value="INFRASTRUCTURE" <?= isset($_GET['role']) && $_GET['role'] == 'INFRASTRUCTURE'? 'selected':'';?>>INFRASTRUCTURE</option>
+                                                <option value="STAFF" <?= isset($_GET['role']) && $_GET['role'] == 'STAFF'? 'selected':'';?>>STAFF</option>
+                                            </select>
+                                        </div> 
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="opt">
+                                    <div class="fil mb-3">
+                                        <label for="drop" style="align-self: center;">Show</label>
+                                        <div class="">
+                                            <select name="limit" onchange="this.form.submit()" class="form-select" id="limit_user">
+                                                <option value="10" <?php if(isset($_GET['limit']) && $_GET['limit'] ==10) echo 'selected';?>>10</option>
+                                                <option value="20" <?php if(isset($_GET['limit']) && $_GET['limit'] ==20) echo 'selected';?>>20</option>
+                                                <option value="30" <?php if(isset($_GET['limit']) && $_GET['limit'] ==30) echo 'selected';?>>30</option>
+                                                <option value="40" <?php if(isset($_GET['limit']) && $_GET['limit'] ==40) echo 'selected';?>>40</option>
+                                                <option value="50" <?php if(isset($_GET['limit']) && $_GET['limit'] ==50) echo 'selected';?>>50</option>
+                                            </select>
+                                        </div>
+                                        <label for="drop" style="align-self: center;">rows</label>
+                                    </div>
+                                    <!--h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports()">Export  <i class="fa-solid fa-download"></i></h4-->
+                                </div>
+
+                            </form>
+                            
+                        </div>
+                        <table class="t table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Name</th>
+                                    <th>User Role</th>
+                                    <th>Date Created</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    include "db_conn.php";
+                                    //$userid = $_SESSION['userid'];
+                                    $limit_user = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
+
+                                    $page_user = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+                                    $start_user = ($page - 1) * $limit;
+
+                                
+                                    $name = isset($_GET['name_fil']) ? $_GET['name_fil'] : '';
+                                    $userid = isset($_GET['user_id_fil']) ? $_GET['user_id_fil'] : '';
+                                    $username = isset($_GET['user_name_fil']) ? $_GET['user_name_fil'] : '';
+                                    $admin = isset($_GET['admin']) ? $_GET['admin'] : '';
+                                    $role = isset($_GET['role']) ? $_GET['role'] : '';
+
+                                    $limit_user = max(1, $limit);
+                                    $page_user = max(1, $page);
+                                    $start_user = max(0, $start);
+                                    $filters_user = [];
+
+                                    if(!empty($name))
+                                    {
+                                        $filters_user[] = "name='$name'";
+                                        
+                                    }
+
+                                    if(!empty($userid))
+                                    {
+                                        $filters_user[] = "userid='$userid'";
+                                        
+                                    }
+
+                                    if(!empty($username))
+                                    {
+                                        $filters_user[] = "username='$username'";
+                                        
+                                    }
+
+                                    if(!empty($role))
+                                    {
+                                        $filters_user[] = "role='$role'";
+                                        
+                                    }
+
+                                    if(!empty($admin))
+                                    {
+                                        if($admin != '---')
+                                        {
+                                            $filters_user[] = "level='$admin'";
+                                        }
+                                        
+                                    }
+
+
+                                    $where_clause = '';
+                                    if(count($filters_user) > 0)
+                                    {
+                                        $where_clause = "WHERE " . implode(" AND ", $filters_user);
+                                    }
+
+                                    $sql = "
+                                        SELECT name,userid,role,date_created
+                                        FROM employees 
+                                        $where_clause
+                                        
+                                        ORDER BY date_created DESC LIMIT $limit_user OFFSET $start_user";
+
+                                    $result = $conn->query($sql);
+                                    //$data = [];
+
+                                    if($result->num_rows > 0)
+                                    {
+                                        while($row = $result->fetch_assoc())
+                                        {
+                                            //$data[] = $row;
+                                            echo "<tr>
+                                                <td>". $row["userid"] ." </td>
+                                                <td>". $row["name"] ." </td>
+                                                <td>". $row["role"] ." </td>
+                                                <td>". $row["date_created"] ." </td>
+                                                <td><a class='btn btn-primary' href='/RequestApp/user.php?id=". $row["userid"] ."&role=". $row["role"] ."&page=$page_user'>View</a>
+                                                </td>
+                                                </tr>";
+                                            
+                                        }
+                                        //$_SESSION['query_res'] = $data;
+                                        
+                                    }else{
+                                        echo "<tr>
+                                                <td colspan='5' >No records found</td>
+                                                </tr>";
+                                    }
+                                ?>
+                                
+                            </tbody>
+                        </table>
+                        <?php
+                        $sql = "SELECT COUNT(*) AS total FROM(
+                        SELECT userid FROM employees $where_clause) as total_table";
+
+                        $result = $conn->query($sql);
+                        $total_records = 0;
+                        while($row_count = $result->fetch_assoc())
+                        {
+                            if(isset($row_count['total']))
+                            {
+                                $total_records +=$row_count['total'];
+                            }
+                            
+                        }
+
+                        $total_pages = ceil($total_records/$limit_user);
+                        $qpar = $_GET;
+                        unset($qpar['page']);
+
+                        $qstring = http_build_query($qpar);
+
+                        ?>
+                        <div class="pg">
+                            <?php
+                            if($total_pages > 1)
+                            {
+                                if($page_user > 1)
+                                {
+                                    echo "<a class='btn btn-primary' href='?page=" . ($page_user - 1) . ($qstring ? '&' . $qstring : '') . "'>Prev</a>";
+                                }else{
+                                    echo "<button class='btn btn-primary' disabled>Prev</button>";
+                                }
+                                echo "<label style='margin: 10px;'>$page_user</label>";
+                                echo "<label style='margin-top: 10px;margin-bottom: 10px;margin-right: 10px;'>of $total_pages</label>";
+                                if($page_user < $total_pages)
+                                {
+                                    echo "<a class='btn btn-primary' href='home.php?page=" . ($page_user + 1) . ($qstring ? '&' . $qstring : '') . "'>Next</a>";
+                                }else{
+                                    echo "<button class='btn btn-primary' disabled>Next</button>";
+                                }
+                            }
+                            
+                            ?>
+                        </div>
+                        <?php
+                        ?>
+                        <div id="space">
+
+                        </div>
+                    </div>
+
                     <?php
                 }
             ?>

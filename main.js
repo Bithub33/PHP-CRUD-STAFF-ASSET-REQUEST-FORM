@@ -6,15 +6,21 @@ const nav = document.querySelectorAll('.pp');
 const sec = document.querySelectorAll('.sec');
 
 const req = document.querySelectorAll('.container');
-const btn = document.querySelectorAll('.bt');
+const btn = document.getElementById('btn');
+const btn_user = document.getElementById('btn_user');
 const form = document.querySelector('form');
+const forms = document.getElementById('forms');
+
 const dep = document.getElementById('dep');
 const loc = document.getElementById('loc');
 const cancel = document.getElementById('cancel');
 const newr = document.getElementById('nr');
+const newr_user = document.getElementById('nr_user');
+
 
 const int_check = document.getElementById('int');
 const inf_check = document.getElementById('inf');
+const soft_rad = document.getElementById('soft_rad');
 
 const int_lay = document.getElementById("internet");
 const inf_lay = document.getElementById("infras");
@@ -26,6 +32,7 @@ const soft_lay = document.getElementById("infras_soft");
 const repl = document.getElementById('repl');
 const num_inp = document.getElementById('num_inp');
 const err = document.getElementById('err');
+const err_id = document.getElementById('err_id');
 const new_hard = document.getElementById('new_hard');
 const new_soft = document.getElementById('soft_new');
 const round = document.getElementById('round');
@@ -37,6 +44,7 @@ const branchs = [{id:1,name:'ACCRA STORE'},{id:2,name:'ACHIMOTA'},{id:3,name:'AF
 
 var count = 0;
 date();
+index();
 
 
 function date(){
@@ -93,7 +101,7 @@ function date(){
             }
         });
         
-        soft_rad.addEventListener("change",()=>{
+        soft_rad.addEventListener('change',()=>{
             if(soft_rad.checked)
             {
                 hard_lay.classList.remove('active');
@@ -119,7 +127,7 @@ function date(){
             }
         });
         
-        inf_rep.addEventListener("change",()=>{
+        inf_rep.addEventListener('change',()=>{
             if(inf_rep.checked)
             {
                 repl.classList.add('active');
@@ -129,7 +137,7 @@ function date(){
             }
         });
 
-        int_check.addEventListener("change",()=>{
+        int_check.addEventListener('change',()=>{
             if(int_check.checked)
             {
                 int.style.display = 'block';
@@ -221,21 +229,15 @@ function date(){
 
         });
 
-
+        btn.addEventListener('click',()=>{
+        
+            btn.style.display = 'none';
+            newr.classList.add('active');
+        });
 
     }
     
 }
-
-btn.forEach(button =>{
-        
-    button.addEventListener('click',()=>{
-        
-        button.style.display = 'none';
-        newr.classList.add('active');
-    });
-
-});
 
 
 
@@ -262,9 +264,66 @@ nav.forEach((navs,index)=>{
         sec.forEach(sec=>(sec.classList.remove('active'))); 
         sec[index].classList.add('active');
 
+        if(nav.length > 1){
+
+            localStorage.setItem('index',index);
+        }
+
         form.reset();
     });
 });
+
+function index(){
+    let index = localStorage.getItem('index');
+    if(!index){
+
+        localStorage.setItem('index', 0);
+        location.reload();
+        
+    }else{
+        
+        if(req[index] && req[index].classList){
+
+            req[index].classList.add('active');
+
+            nav[index].classList.add('active');
+
+            sec[index].classList.add('active');
+
+            btn_user.addEventListener('click',()=>{
+        
+                btn_user.style.display = 'none';
+                newr_user.classList.add('active');
+            });
+
+            forms.addEventListener('submit',(e)=>{
+
+                const pass = document.getElementById('pass').value;
+                const con_pass = document.getElementById('pass_con').value;
+                const span = document.getElementById('err');
+            
+                if(pass !== con_pass){
+            
+                    e.preventDefault();
+                    span.style.display = 'block';
+            
+                }else{
+            
+                    span.style.display = 'none';
+                }
+            
+            });
+            
+        }else{
+            req[0].classList.add('active');
+ 
+            nav[0].classList.add('active');
+
+            sec[0].classList.add('active');
+        }
+
+    }
+}
 
 function submit(e)
 {
@@ -283,6 +342,10 @@ function submit(e)
 function exports(){
     window.location.href = "export.php";
 }
+
+document.getElementById('logout').addEventListener('click',()=>{
+    localStorage.setItem('index',0);
+});
 
 
 /*tog.addEventListener("click",function(){

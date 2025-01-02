@@ -134,7 +134,7 @@ body{
     width: 100%;
 }
 
-.list,.items{
+.list,.items,.items_user{
     display: flex;
     
 }
@@ -144,14 +144,32 @@ body{
     align-items: center;
     justify-content: center;
 }
+.items_user{
+    gap: 10px;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
 .items h4{
     font-size: 15px;
+}
+
+.items_user h4{
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .check{
     height: 16px;
     width: 16px;
     margin-bottom: 5px;
+}
+
+.check_user{
+    height: 16px;
+    width: 16px;
 }
 
 .pp.active{
