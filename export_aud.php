@@ -3,10 +3,10 @@ session_start();
 
 if(isset($_SESSION['query_res']))
 {
-    $result = $$_SESSION['query_res'];
+    $result = $_SESSION['query_res'];
 
     header("Content-Type: application/vnd.ms-excel");
-    header("Content-Description: attachment: filename=data.xls");
+    header("Content-Disposition: attachment; filename=data.xls");
 
     echo "<table border='1'>
     <thead>
@@ -21,7 +21,6 @@ if(isset($_SESSION['query_res']))
         <th>Audited By</th>
         <th>Date Audited</th>
         <th>Request Type</th>
-        <th>Action</th>
 
     </tr>
     </thead>

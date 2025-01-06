@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test App</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.png" type="image/png">
 </head>
@@ -20,7 +20,8 @@
           <img src="images/img1.png" alt="">
         </div>
         <label>Username</label><br>
-        <input type="text" class="inp" name="username"><br>
+        <input type="text" class="inp" oninput="this.value = this.value.toUpperCase();"
+         name="username"><br>
         <label>Password</label><br>
         <input type="password" class="inps" id="inps" name="password"><br>
         <button class="btn btn-primary">Login</button>

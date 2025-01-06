@@ -123,7 +123,9 @@
     <div class="tit">
         <h4>Melcom</h4>
     </div>
-</nav><div class="ma" style="padding: 30px;">
+</nav>
+<div class="ma" style="padding: 30px;">
+    
 <a style="margin: 50px; font-size: 18px;" href="home.php?page=<?php echo $page ?>"><i class="fa-solid fa-arrow-left-long"></i>  Back</a>
 
 <div id="re" class="cont">

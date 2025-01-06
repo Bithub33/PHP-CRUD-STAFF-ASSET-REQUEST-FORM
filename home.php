@@ -59,7 +59,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                 if($_SESSION['role'] === 'STAFF')
                 {
                     ?>
-                    <a class='pp' href='#'><i class='fa-solid fa-table'></i><h4 class='sec'>Request</h4></a>
+                    <a class='pp' href='#'><i class='fa-solid fa-table'></i><h4 class='sec'>Requests</h4></a>
                     <?php
                 }
                 if($_SESSION['role'] === 'ERP' || $_SESSION['role'] === 'EMAIL' || $_SESSION['role'] === 'BIOMETRIC' || $_SESSION['role'] === 'INTERNET' || $_SESSION['role'] === 'INFRASTRUCTURE')
@@ -464,7 +464,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         </div>
                                         <label for="drop" style="align-self: center;">rows</label>
                                     </div>
-                                    <!--h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports()">Export  <i class="fa-solid fa-download"></i></h4-->
+                                    <h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports_staff()">Export  <i class="fa-solid fa-download"></i></h4> 
                                 </div>
 
                             </form>
@@ -631,6 +631,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                             
                                         }
                                         $_SESSION['query_res'] = $data;
+                                        $data = [];
                                         
                                     }else{
                                         echo "<tr>
@@ -708,7 +709,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                     $role = $_SESSION['role'];
                     ?>
                     <div id="request" class="container">
-                        <h2 class=""><?php echo isset($role) ? ucfirst($role): 'Implementor';?> Request Lists</h2>
+                        <h2 class=""><?php echo isset($role) ? ucfirst(strtolower($role)): 'Implementor';?> Request Lists</h2>
                         <div class="filter">
                         <form method="GET" action="" id="form">
                             <div class="fil mb-5">
@@ -757,19 +758,26 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                 </div>
                     
                             </div>
-                            <div class="fil mb-3">
-                                <label for="drop" style="align-self: center;">Show</label>
-                                <div class="">
-                                    <select name="limit" onchange="this.form.submit()" class="form-select" id="drop">
-                                        <option value="10" <?php if(isset($_GET['limit']) && $_GET['limit'] ==10) echo 'selected';?>>10</option>
-                                        <option value="20" <?php if(isset($_GET['limit']) && $_GET['limit'] ==20) echo 'selected';?>>20</option>
-                                        <option value="30" <?php if(isset($_GET['limit']) && $_GET['limit'] ==30) echo 'selected';?>>30</option>
-                                        <option value="40" <?php if(isset($_GET['limit']) && $_GET['limit'] ==40) echo 'selected';?>>40</option>
-                                        <option value="50" <?php if(isset($_GET['limit']) && $_GET['limit'] ==50) echo 'selected';?>>50</option>
-                                    </select>
+                            <div class="opt">
+
+                                <div class="fil mb-3">
+                                    <label for="drop" style="align-self: center;">Show</label>
+                                    <div class="">
+                                        <select name="limit" onchange="this.form.submit()" class="form-select" id="drop">
+                                            <option value="10" <?php if(isset($_GET['limit']) && $_GET['limit'] ==10) echo 'selected';?>>10</option>
+                                            <option value="20" <?php if(isset($_GET['limit']) && $_GET['limit'] ==20) echo 'selected';?>>20</option>
+                                            <option value="30" <?php if(isset($_GET['limit']) && $_GET['limit'] ==30) echo 'selected';?>>30</option>
+                                            <option value="40" <?php if(isset($_GET['limit']) && $_GET['limit'] ==40) echo 'selected';?>>40</option>
+                                            <option value="50" <?php if(isset($_GET['limit']) && $_GET['limit'] ==50) echo 'selected';?>>50</option>
+                                        </select>
+                                    </div>
+                                    <label for="drop" style="align-self: center;">rows</label>
+                                    
                                 </div>
-                                <label for="drop" style="align-self: center;">rows</label>
+                                <h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports_imp()">Export  <i class="fa-solid fa-download"></i></h4>
+
                             </div>
+                            
                         </form>
                         
                     </div>
@@ -851,7 +859,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if($rol != "auditor" && $rol != "staff" )
                                     {
-                                        
+                                                $data = [];
                                                 $result = $conn->query($sql);
 
                                                 if($result->num_rows > 0)
@@ -860,6 +868,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                     {
                                                         while($row = $result->fetch_assoc())
                                                         {
+                                                            $data[] = $row;
                                                             echo "<tr>
                                                                 <td>". $row["Ticketid"] ." </td>
                                                                 <td>". $row["Requestedby"] ." </td>
@@ -874,6 +883,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                     }else{
                                                         while($row = $result->fetch_assoc())
                                                         {
+                                                            $data[] = $row;
                                                             echo "<tr>
                                                                 <td>". $row["Ticketid"] ." </td>
                                                                 <td>". $row["Requestedby"] ." </td>
@@ -885,6 +895,8 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                                 </tr>";
                                                         }
                                                     }
+                                                    $_SESSION['query_res'] = $data;
+                                                    $data = [];
                                                     
                                                 }else{
                                                     if($role == 'infrastructure')
@@ -1070,20 +1082,26 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         </a>
                                 </div>
                             </div>
-                            
-                            <div class="fil mb-3">
-                                <label for="drop" style="align-self: center;">Show</label>
-                                <div class="">
-                                    <select name="limit" onchange="this.form.submit()" class="form-select" id="drop">
-                                        <option value="10" <?php if(isset($_GET['limit']) && $_GET['limit'] ==10) echo 'selected';?>>10</option>
-                                        <option value="20" <?php if(isset($_GET['limit']) && $_GET['limit'] ==20) echo 'selected';?>>20</option>
-                                        <option value="30" <?php if(isset($_GET['limit']) && $_GET['limit'] ==30) echo 'selected';?>>30</option>
-                                        <option value="40" <?php if(isset($_GET['limit']) && $_GET['limit'] ==40) echo 'selected';?>>40</option>
-                                        <option value="50" <?php if(isset($_GET['limit']) && $_GET['limit'] ==50) echo 'selected';?>>50</option>
-                                    </select>
+                            <div class="opt">
+
+                                <div class="fil mb-3">
+                                    <label for="drop" style="align-self: center;">Show</label>
+                                    <div class="">
+                                        <select name="limit" onchange="this.form.submit()" class="form-select" id="drop">
+                                            <option value="10" <?php if(isset($_GET['limit']) && $_GET['limit'] ==10) echo 'selected';?>>10</option>
+                                            <option value="20" <?php if(isset($_GET['limit']) && $_GET['limit'] ==20) echo 'selected';?>>20</option>
+                                            <option value="30" <?php if(isset($_GET['limit']) && $_GET['limit'] ==30) echo 'selected';?>>30</option>
+                                            <option value="40" <?php if(isset($_GET['limit']) && $_GET['limit'] ==40) echo 'selected';?>>40</option>
+                                            <option value="50" <?php if(isset($_GET['limit']) && $_GET['limit'] ==50) echo 'selected';?>>50</option>
+                                        </select>
+                                    </div>
+                                    <label for="drop" style="align-self: center;">rows</label>
+                                    
                                 </div>
-                                <label for="drop" style="align-self: center;">rows</label>
+                                <h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports_aud()">Export  <i class="fa-solid fa-download"></i></h4> 
+
                             </div>
+                            
                         </form>
                         
                     </div>
@@ -1209,11 +1227,13 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                 ORDER BY Date DESC LIMIT $start, $limit";
 
                                 $result = $conn->query($sql);
+                                $data = [];
 
                                 if($result->num_rows > 0)
                                 {
                                     while($row = $result->fetch_assoc())
                                     {
+                                        $data[] = $row;
                                         echo "<tr>
                                             <td>". $row["Ticketid"] ." </td>
                                             <td>". $row["Requestedby"] ." </td>
@@ -1226,6 +1246,8 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                             <td><a class='btn btn-primary' href='/RequestApp/aud.php?id=". $row["Ticketid"] ."&type=". $row["data_base"] ."&page=$page'>View</a></td>
                                             </tr>";
                                     }
+                                    $_SESSION['query_res'] = $data;
+                                    $data = [];
                                     
                                 }else{
                                     echo "<tr>
@@ -1487,7 +1509,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         </div>
                                         <label for="drop" style="align-self: center;">rows</label>
                                     </div>
-                                    <!--h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports()">Export  <i class="fa-solid fa-download"></i></h4-->
+                                    <h4 style="font-size: 15px; align-items: end;justify-content: center;cursor: pointer" onclick="exports_users()">Export  <i class="fa-solid fa-download"></i></h4> 
                                 </div>
 
                             </form>
@@ -1573,13 +1595,13 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         ORDER BY date_created DESC LIMIT $limit_user OFFSET $start_user";
 
                                     $result = $conn->query($sql);
-                                    //$data = [];
+                                    $data = [];
 
                                     if($result->num_rows > 0)
                                     {
                                         while($row = $result->fetch_assoc())
                                         {
-                                            //$data[] = $row;
+                                            $data[] = $row;
                                             echo "<tr>
                                                 <td>". $row["userid"] ." </td>
                                                 <td>". $row["name"] ." </td>
@@ -1590,7 +1612,8 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                 </tr>";
                                             
                                         }
-                                        //$_SESSION['query_res'] = $data;
+                                        $_SESSION['query_users_res'] = $data;
+                                        $data = [];
                                         
                                     }else{
                                         echo "<tr>
@@ -1659,7 +1682,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
         </div>
     </div>
 
-    <div class="layout">
+    <!-- <div class="layout">
         <p>
             fgsjfvksgksksk,jnslkjfh;
         </p>
@@ -1669,7 +1692,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
         <p>
             124654487465464
         </p>
-    </div>
+    </div> -->
 </div>
     <script src="main.js"></script>
     <script src="js/bootstrap.min.js"></script>

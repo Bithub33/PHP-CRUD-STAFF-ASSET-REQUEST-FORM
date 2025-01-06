@@ -339,8 +339,20 @@ function submit(e)
 
 }
 
-function exports(){
-    window.location.href = "export.php";
+function exports_staff(){
+    window.location.href = "export_staff.php";
+}
+
+function exports_imp(){
+    window.location.href = "export_imp.php";
+}
+
+function exports_aud(){
+    window.location.href = "export_aud.php";
+}
+
+function exports_users(){
+    window.location.href = "export_users.php";
 }
 
 document.getElementById('logout').addEventListener('click',()=>{

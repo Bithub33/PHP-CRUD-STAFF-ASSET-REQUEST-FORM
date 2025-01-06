@@ -46,7 +46,7 @@ body{
 }
 
 .side_nav{
-    width: 340px;
+    width: 25%;
     padding: 10px;
     align-self: flex-start;
     background: #6a56d8;
@@ -312,15 +312,17 @@ td{
 }
 
 .cont{
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
 .ma{
     height: 100%;
+    width: 100%;
     overflow: auto;
 }
 

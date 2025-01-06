@@ -91,7 +91,8 @@
     <link rel="stylesheet" href="css/all.min.css"/>
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="icon" href="favicon.png" type="image/png">
-    <title>View</title>
+    <title>Users</title>
+    
 </head>
 <body>
 <nav class="navbar">
