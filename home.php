@@ -31,6 +31,10 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 </head>
 <body>
 <nav class="navbar">
+    <!-- <div class="icon">
+        <i class="icons fa-solid fa-bars" id="icons"></i>
+    </div> -->
+   
     <div class="tit">
         <h4>Melcom</h4>
     </div>
@@ -1478,11 +1482,12 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                 </div>
 
                                 <div class="fil mb-5">
-                                    <div class="column" style="width: 210px;">
+                                    <div class="column" style="width: 20.5%;">
                                         <label for="aud-drop" class="">Request Type</label>
                                         <div class="">
-                                            <select name="role" class="form-select" id="role">
+                                            <select name="role" class="form-select" id="role-users">
                                                 <option value="ALL" <?= isset($_GET['role']) && $_GET['role'] == 'ALL'? 'selected':'';?>>ALL</option>
+                                                <option value="AUDITOR" <?= isset($_GET['role']) && $_GET['role'] == 'AUDITOR'? 'selected':'';?>>AUDITOR</option>
                                                 <option value="ERP" <?= isset($_GET['role']) && $_GET['role'] == 'ERP'? 'selected':'';?>>ERP</option>
                                                 <option value="EMAIL" <?= isset($_GET['role']) && $_GET['role'] == 'EMAIL'? 'selected':'';?>>EMAIL</option>
                                                 <option value="INTERNET" <?= isset($_GET['role']) && $_GET['role'] == 'INTERNET'? 'selected':'';?>>INTERNET</option>
@@ -1567,7 +1572,11 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($role))
                                     {
-                                        $filters_user[] = "role='$role'";
+                                        if($role != 'ALL'){
+
+                                            $filters_user[] = "role='$role'";
+
+                                        }
                                         
                                     }
 

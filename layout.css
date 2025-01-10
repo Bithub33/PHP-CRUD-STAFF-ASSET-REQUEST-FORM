@@ -16,8 +16,8 @@ body{
 .navbar{
     background: #1d1063;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
     padding: 5px;
     top: 0;
     height: 40px;
@@ -25,8 +25,21 @@ body{
 
 }
 
+.tit{
+    flex: 1;
+    text-align: center;
+}
+
 .navbar h4{
     color: #fff;
+}
+
+.icons{
+    color: #fff;
+    padding: 5px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
 }
 
 .layout{
@@ -39,6 +52,8 @@ body{
     height: 100%;
     width: 100%;
     overflow-y: hidden;
+    margin: 0;
+    transition: width 0.3s ease;
 }
 
 .container{
@@ -57,6 +72,10 @@ body{
     box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, .3);
 
 }
+
+/* .side_nav.active{
+    width: 4.1%;
+} */
 
 .side_nav a{
     text-decoration: none;
@@ -111,7 +130,13 @@ body{
     overflow-y: auto;
     overflow-x: auto;
     padding: 20px;
+    transition: width 0.3s ease;
+
 }
+
+/* .container.expand{
+    float: 1.5;   
+} */
 
 .newr{
     display: none;

@@ -37,6 +37,7 @@ const new_hard = document.getElementById('new_hard');
 const new_soft = document.getElementById('soft_new');
 const round = document.getElementById('round');
 const int = document.getElementById('internet');
+const tog = document.getElementById('icons');
 
 const depts = [{id:1,name:'ACCOUNTS'},{id:2,name:'ADMINISTRATION'},{id:3,name:'AUDIT'},{id:4,name:'CUSTOMER SERVICE'},{id:5,name:'DIGITAL COMMERCE'},{id:6,name:'HR'},{id:7,name:'IMPORT'},{id:8,name:'IT'},{id:9,name:'MAINTENANCE'},{id:10,name:'MARKETING'},{id:11,name:'MERCHANDISE'},{id:12,name:'MIS'},{id:13,name:'OPERATIONS'},{id:14,name:'PIZZA HUT'},{id:15,name:'PROJECT'}];
 
@@ -361,8 +362,9 @@ document.getElementById('logout').addEventListener('click',()=>{
 
 
 /*tog.addEventListener("click",function(){
-    document.querySelector("#side_bar").classList.toggle("expand");
-});*/
+    document.querySelector("#side_bar").classList.toggle("active");
+    document.querySelector("#request").classList.toggle("expand");
+}); */
 
 
 
