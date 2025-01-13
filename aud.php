@@ -15,7 +15,7 @@
         if(isset($_GET['id']) && isset($_GET['type']))
         {
             $id = $_GET['id'];
-            $table = $_GET['type'];
+            $table = strtolower($_GET['type']);
             $pg = $_GET['page'];
             
             $sql = "SELECT * FROM $table WHERE Ticketid='$id'";
@@ -690,6 +690,17 @@
                                 <span id="err" style="color: red; display: none">Field cannot be empty</span> 
                             </div>
                             
+                        </div>
+                    </div>
+
+                    <div class="opt">
+                        <div class="column mb-3">
+                            <label for="oldhname" class="">Implementor Remarks</label>
+                            <div class="">
+                                <input id="oldhname" type="text" name="oldhname" value="<?php echo $softimprem?>" class="form-control" oninput="this.value = this.value.toUpperCase();" disabled>
+                                <span id="err" style="color: red; display: none">Field cannot be empty</span>
+                            </div>
+                        
                         </div>
                     </div>
 

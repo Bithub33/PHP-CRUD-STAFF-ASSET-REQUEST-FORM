@@ -31,6 +31,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 </head>
 <body>
 <nav class="navbar">
+
     <!-- <div class="icon">
         <i class="icons fa-solid fa-bars" id="icons"></i>
     </div> -->
@@ -528,7 +529,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($imp_status))
                                     {
-                                        if($imp_status != 'Status')
+                                        if($imp_status !== 'Status')
                                         {
                                             $filters[] = "Status='$imp_status'";
                                         }
@@ -537,7 +538,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($aud_status))
                                     {
-                                        if($aud_status != 'Status')
+                                        if($aud_status !== 'Status')
                                         {
                                             $filters[] = "Audited='$aud_status'";
                                         }
@@ -564,7 +565,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($req_type))
                                     {
-                                        if($req_type != 'All')
+                                        if($req_type !== 'All')
                                         {
                                             $filters[] = "data_base='$req_type'";
                                         }
@@ -792,7 +793,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     <th>Requested By</th>
                                     <th>Date of Request</th>
                                     <?php
-                                    if($role == 'infrastructure')
+                                    if($role == 'INFRASTRUCTURE')
                                     {
                                         echo '<th>Type</th>';
                                     }
@@ -824,11 +825,23 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     $limit = max(1, $limit);
                                     $page = max(1, $page);
                                     $start = max(0, $start);
+                                    $sql = "";
 
-                                    $sql = "
-                                                SELECT * FROM $rol WHERE 1=1
+                                    if($role == 'INFRASTRUCTURE'){
+
+                                        $sql = "
+                                                SELECT Ticketid,Requestedby,Date,Type,Status,ImpDate,Audited,data_base FROM $rol 
+                                                WHERE 1=1
                                     
                                                 ";
+
+                                    }else{
+                                        $sql = "
+                                                SELECT Ticketid,Requestedby,Date,Status,ImpDate,Audited,data_base FROM $rol 
+                                                WHERE 1=1
+                                    
+                                                ";
+                                    }
 
 
                                     if(!empty($st_date))
@@ -851,7 +864,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($imp_status))
                                     {
-                                        if($imp_status != 'Status')
+                                        if($imp_status !== 'Status')
                                         {
                                             $sql .= " AND Status='$imp_status'";
                                         }
@@ -868,7 +881,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                                 if($result->num_rows > 0)
                                                 {
-                                                    if($role == 'infrastructure')
+                                                    if($role == 'INFRASTRUCTURE')
                                                     {
                                                         while($row = $result->fetch_assoc())
                                                         {
@@ -903,7 +916,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                     $data = [];
                                                     
                                                 }else{
-                                                    if($role == 'infrastructure')
+                                                    if($role == 'INFRASTRUCTURE')
                                                     {
                                                         echo "<tr>
                                                             <td colspan='8' >No records found</td>
@@ -1173,7 +1186,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                 if(!empty($aud_status))
                                 {
-                                    if($aud_status != 'Status')
+                                    if($aud_status !== 'Status')
                                     {
                                         $filters[] = "Audited='$aud_status'";
                                     }
@@ -1182,7 +1195,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                 if(!empty($req_type))
                                 {
-                                    if($req_type != 'All')
+                                    if($req_type !== 'All')
                                     {
                                         $filters[] = "data_base='$req_type'";
                                     }
@@ -1483,7 +1496,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                 <div class="fil mb-5">
                                     <div class="column" style="width: 20.5%;">
-                                        <label for="aud-drop" class="">Request Type</label>
+                                        <label for="aud-drop" class="">User Type</label>
                                         <div class="">
                                             <select name="role" class="form-select" id="role-users">
                                                 <option value="ALL" <?= isset($_GET['role']) && $_GET['role'] == 'ALL'? 'selected':'';?>>ALL</option>
@@ -1572,7 +1585,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($role))
                                     {
-                                        if($role != 'ALL'){
+                                        if($role !== 'ALL'){
 
                                             $filters_user[] = "role='$role'";
 
@@ -1582,7 +1595,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
 
                                     if(!empty($admin))
                                     {
-                                        if($admin != '---')
+                                        if($admin !== '---')
                                         {
                                             $filters_user[] = "level='$admin'";
                                         }
@@ -1597,7 +1610,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     }
 
                                     $sql = "
-                                        SELECT name,userid,role,date_created
+                                        SELECT userid,name,role,date_created
                                         FROM employees 
                                         $where_clause
                                         

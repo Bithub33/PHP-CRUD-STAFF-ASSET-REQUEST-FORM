@@ -5,33 +5,17 @@ if(isset($_SESSION['query_users_res']))
 {
     $result = $_SESSION['query_users_res'];
 
-    header("Content-Type: application/vnd.ms-excel");
-    header("Content-Disposition: attachment; filename=data.xls");
+    header("Content-Type: text/csv");
+    header("Content-Disposition: attachment; filename=data.csv");
 
-    echo "<table border='1'>
-    <thead>
-    <tr>
-        <th>User ID</th>
-        <th>Name</th>
-        <th>User Role</th>
-        <th>Date Created</th>
+    $output = fopen("php://output", "w");
+    fputcsv($output, ["User ID", "Name", "User Role", "Date Created"]);
 
-    </tr>
-    </thead>
-    <tbody>";
-
-    foreach($result as $row){
-
-        echo "<tr>
-            <td>". $row["userid"] ." </td>
-            <td>". $row["name"] ." </td>
-            <td>". $row["role"] ." </td>
-            <td>". $row["date_created"] ." </td>
-            </tr>";
+    foreach($result as  $row){
+        fputcsv($output,$row);
     }
 
-    echo "</tbody>
-    </table>";
+    fclose($output);
     exit();
 }
 ?>

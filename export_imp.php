@@ -3,79 +3,51 @@ session_start();
 
 if(isset($_SESSION['query_res']) && isset($_SESSION['role']))
 {
-    $result = $_SESSION['query_res'];
     $role = $_SESSION['role'];
 
-    header("Content-Type: application/vnd.ms-excel");
-    header("Content-Disposition: attachment; filename=data.xls");
+    header("Content-Type: text/csv");
+    header("Content-Disposition: attachment; filename=data.csv");
 
-    if($role == 'infrastructure'){
+    if($role == 'INFRASTRUCTURE'){
+        $result = $_SESSION['query_res'];
+        $remove = "data_base";
 
-        echo "<table border='1'>
-        <thead>
-        <tr>
-            <th>Request ID</th>
-            <th>Requested By</th>
-            <th>Date of Request</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Implemented Date</th>
-            <th>Audited Status</th>
-
-        </tr>
-        </thead>
-        <tbody>";
-
-        foreach($result as $row){
-
-            echo "<tr>
-                <td>". $row["Ticketid"] ." </td>
-                <td>". $row["Requestedby"] ." </td>
-                <td>". $row["Date"] ." </td>
-                <td>". $row["Type"] ." </td>
-                <td>". $row["Status"] ." </td>
-                <td>". $row["ImpDate"] ." </td>
-                <td>". $row["Audited"] ." </td>
-                </tr>";
+        foreach($result as &$row){
+            unset($row[$remove]);
         }
-    
-        echo "</tbody>
-        </table>";
+        
+        //$result = array_values($result);
+        $output = fopen("php://output", "w");
+        fputcsv($output, ["Request Id","Requested By","Date of Request","Type","Imp Status","Implemented Date","Audited Status"]);
+
+        foreach($result as  $row){
+            fputcsv($output,$row);
+        }
+
+        fclose($output);
         exit();
 
     }else{
 
+        $result = $_SESSION['query_res'];
+        $remove = "data_base";
+        $remove2 = "Type";
 
-        echo "<table border='1'>
-        <thead>
-        <tr>
-            <th>Request ID</th>
-            <th>Requested By</th>
-            <th>Date of Request</th>
-            <th>Status</th>
-            <th>Implemented Date</th>
-            <th>Audited Status</th>
-
-        </tr>
-        </thead>
-        <tbody>";
-
-        foreach($result as $row){
-
-            echo "<tr>
-                <td>". $row["Ticketid"] ." </td>
-                <td>". $row["Requestedby"] ." </td>
-                <td>". $row["Date"] ." </td>
-                <td>". $row["Status"] ." </td>
-                <td>". $row["ImpDate"] ." </td>
-                <td>". $row["Audited"] ." </td>
-                </tr>";
+        foreach($result as &$row){
+            unset($row[$remove]);
+            unset($row[$remove2]);
         }
-    
-        echo "</tbody>
-        </table>";
-        exit();
+        
+        //$result = array_values($result);
+        $output = fopen("php://output", "w");
+        fputcsv($output, ["Request Id","Requested By","Date of Request","Imp Status","Implemented Date","Audited Status"]);
 
+        foreach($result as  $row){
+            fputcsv($output,$row);
+        }
+
+        fclose($output);
+        exit();
 
     }
 

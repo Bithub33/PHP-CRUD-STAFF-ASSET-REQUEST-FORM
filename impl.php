@@ -16,7 +16,7 @@
         if(isset($_GET['id']) && isset($_GET['type']))
         {
             $id = $_GET['id'];
-            $table = $_GET['type'];
+            $table = strtolower($_GET['type']);
             $pg = $_GET['page'];
             
             $sql = "SELECT * FROM $table WHERE Ticketid='$id'";
@@ -73,7 +73,7 @@
             return $data;
         }
 
-        $id=clean($_POST['id']);$table=clean($_POST['table']);$name=$_SESSION['name'];$pg=$_POST['pg'];
+        $id=clean($_POST['id']);$table=clean($_POST['table']);$name=$_SESSION['name'];$pg=$_POST['pg'];$type=clean($_POST['type']);
 
 
         $datetime = new DateTime("now", new DateTimeZone('UTC'));
@@ -140,18 +140,37 @@
                     }
                 }
 
-                if($table == 'infrastructure')
+
+                if($table === 'infrastructure')
                 {
-                    $newHardName = clean(isset($_POST['newhname']) ? $_POST['newhname']:'');$newHardModel = clean(isset($_POST['newhmod'])?$_POST['newhmod']:'');$newHardCond = clean(isset($_POST['newhcond']) ? $_POST['newhcond']:'');$newHardSerial = clean(isset($_POST['newhser'])?$_POST['newhser']:'');$imp=clean(isset($_POST['softimprem'])?$_POST['softimprem']:'');$newimphname=isset($_POST['newimphname']) ? $_POST['newimphname']:'';$imp = isset($_POST['hardimprem']) ? $_POST['hardimprem']:'';
+                    if($type == 'HARDWARE'){
 
-                    $sql = "UPDATE $table SET Status='APPROVED',NewHardModel='$newHardModel',NewHardSerial='$newHardSerial',NewHardCond='$newHardCond',ImpRem='$imp',NewImpHardName='$newimphname', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+                        $newHardName = clean(isset($_POST['newhname']) ? $_POST['newhname']:'');$newHardModel = clean(isset($_POST['newhmod'])?$_POST['newhmod']:'');$newHardCond = clean(isset($_POST['newhcond']) ? $_POST['newhcond']:'');$newHardSerial = clean(isset($_POST['newhser'])?$_POST['newhser']:'');$newimphname=isset($_POST['newimphname']) ? $_POST['newimphname']:'';$imp = isset($_POST['hardimprem']) ? $_POST['hardimprem']:'';
 
-                    $result = $conn->query($sql);
-                    if($result)
-                    {
-                        header("Location: home.php?page=$pg");
-                        exit;
+                        $sql = "UPDATE $table SET Status='APPROVED',NewHardModel='$newHardModel',NewHardSerial='$newHardSerial',NewHardCond='$newHardCond',ImpRem='$imp',NewImpHardName='$newimphname', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
+                    }else{
+
+                        $imp=clean(isset($_POST['softimprem']) ? $_POST['softimprem']:'');
+
+                        $sql = "UPDATE $table SET Status='APPROVED',ImpRem='$imp',Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
+
+                        $result = $conn->query($sql);
+                        if($result)
+                        {
+                            header("Location: home.php?page=$pg");
+                            exit;
+                        }
+
                     }
+                    
                 }
                 
             }else{
@@ -229,7 +248,7 @@
                 {
                     if($type == 'HARDWARE'){
 
-                        $newHardName = clean(isset($_POST['newhname']) ? $_POST['newhname']:'');$newHardModel = clean(isset($_POST['newhmod'])?$_POST['newhmod']:'');$newHardCond = clean(isset($_POST['newhcond']) ? $_POST['newhcond']:'');$newHardSerial = clean(isset($_POST['newhser'])?$_POST['newhser']:'');$imp=clean(isset($_POST['softimprem'])?$_POST['softimprem']:'');$newimphname=isset($_POST['newimphname']) ? $_POST['newimphname']:'';$imp = isset($_POST['hardimprem']) ? $_POST['hardimprem']:'';
+                        $newHardName = clean(isset($_POST['newhname']) ? $_POST['newhname']:'');$newHardModel = clean(isset($_POST['newhmod'])?$_POST['newhmod']:'');$newHardCond = clean(isset($_POST['newhcond']) ? $_POST['newhcond']:'');$newHardSerial = clean(isset($_POST['newhser'])?$_POST['newhser']:'');$newimphname=isset($_POST['newimphname']) ? $_POST['newimphname']:'';$imp = isset($_POST['hardimprem']) ? $_POST['hardimprem']:'';
 
                         $sql = "UPDATE $table SET Status='DECLINED',NewHardModel='$newHardModel',NewHardSerial='$newHardSerial',NewHardCond='$newHardCond',ImpRem='$imp',NewImpHardName='$newimphname', Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
 
@@ -242,7 +261,7 @@
 
                     }else{
 
-                        $imp=clean(isset($_POST['softimprem'])?$_POST['softimprem']:'');
+                        $imp=clean(isset($_POST['softimprem']) ? $_POST['softimprem']:'');
 
                         $sql = "UPDATE $table SET Status='DECLINED',ImpRem='$imp',Implementedby='$name',ImpDate='$date' WHERE Ticketid='$id'";
 

@@ -39,7 +39,7 @@
                 {
                     $sql = "INSERT INTO erp (Requestedby,ReqFor, Department, Location, Date,
                     Contact,Userid, Status, Audited,Implementedby,Auditedby,data_base,EmpCode) 
-                    VALUES ('$requestedBy','$reqfor','$dept','$loc', '$date','$contact','$userid', '$status', '$audited','$implementedby','$auditedby','erp','$empcode')";
+                    VALUES ('$requestedBy','$reqfor','$dept','$loc', '$date','$contact','$userid', '$status', '$audited','$implementedby','$auditedby','ERP','$empcode')";
 
                     $key = array_search($tab, $table);
                     unset($table[$key]);
@@ -50,14 +50,14 @@
                     $sql = "INSERT INTO email (Requestedby,ReqFor, Department, Location, 
                     Date, Contact,Userid,Status, Audited,Implementedby,Auditedby,data_base,EmpCode) 
                     VALUES ('$requestedBy','$reqfor','$dept','$loc', '$date','$contact','$userid', 
-                    '$status', '$audited','$implementedby','$auditedby','email','$empcode')";
+                    '$status', '$audited','$implementedby','$auditedby','EMAIL','$empcode')";
                     $key = array_search($tab, $table);
                     unset($table[$key]);
                     
                 }elseif($tab == 'biometric')
                 {
                     $sql = "INSERT INTO biometric (Requestedby,ReqFor, Department, Location, Date, Contact,Userid, Status, Audited,Implementedby,Auditedby,data_base,EmpCode) 
-                    VALUES ('$requestedBy','$reqfor','$dept','$loc', '$date','$contact','$userid', '$status', '$audited','$implementedby','$auditedby','biometric','$empcode')";
+                    VALUES ('$requestedBy','$reqfor','$dept','$loc', '$date','$contact','$userid', '$status', '$audited','$implementedby','$auditedby','BIOMETRIC','$empcode')";
                     $key = array_search($tab, $table);
                     unset($table[$key]);
                     
@@ -65,7 +65,7 @@
                 {
                     
                     $sql = "INSERT INTO internet (Requestedby,ReqFor, Department, Location, Date, Contact,Userid, Status, Audited,Implementedby,Auditedby,data_base,EmpCode,ReqSites) 
-                    VALUES ('$requestedBy','$reqfor','$dept','$loc','$date','$contact','$userid','$status', '$audited','$implementedby','$auditedby','internet','$empcode','$reqsites')";
+                    VALUES ('$requestedBy','$reqfor','$dept','$loc','$date','$contact','$userid','$status', '$audited','$implementedby','$auditedby','INTERNET','$empcode','$reqsites')";
                     $key = array_search($tab, $table);
                     unset($table[$key]);
                     
@@ -73,11 +73,11 @@
                 {
                     if($type == 'SOFTWARE'){
                         $sql = "INSERT INTO infrastructure (Requestedby,ReqFor, Department, Location, Date, Contact,Userid,Type,NewSoftName,SoftReqType,Status, Audited,Implementedby,Auditedby,data_base,EmpCode) 
-                        VALUES ('$requestedBy','$reqfor','$dept','$loc','$date','$contact','$userid','$type','$newSoftName','$softReqType','$status', '$audited','$implementedby','$auditedby','infrastructure','$empcode')";
+                        VALUES ('$requestedBy','$reqfor','$dept','$loc','$date','$contact','$userid','$type','$newSoftName','$softReqType','$status', '$audited','$implementedby','$auditedby','INFRASTRUCTURE','$empcode')";
                     }else{
                         $sql = "INSERT INTO infrastructure (Requestedby,ReqFor, Department, Location, Date, Contact,Userid,Type,OldHardName,OldHardSerial,OldHardModel,OldHardCond,
                         HardReasonRep,HardReplacement,NewHardName,OldTagNumber,Status, Audited,Implementedby,Auditedby,data_base,EmpCode) 
-                        VALUES ('$requestedBy','$reqfor','$dept','$loc','$date','$contact','$userid','$type','$oldHardName','$oldHardSerial','$oldHardModel','$oldHardCond','$hardReason','$hard_replacement','$newHardName','$oldhTagNum','$status', '$audited','$implementedby','$auditedby','infrastructure','$empcode')";
+                        VALUES ('$requestedBy','$reqfor','$dept','$loc','$date','$contact','$userid','$type','$oldHardName','$oldHardSerial','$oldHardModel','$oldHardCond','$hardReason','$hard_replacement','$newHardName','$oldhTagNum','$status', '$audited','$implementedby','$auditedby','INFRASTRUCTURE','$empcode')";
                     }
                     
                     $key = array_search($tab, $table);

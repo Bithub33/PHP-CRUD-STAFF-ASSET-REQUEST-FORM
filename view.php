@@ -16,7 +16,7 @@
         if(isset($_GET['id']) && isset($_GET['type']))
         {
             $id = $_GET['id'];
-            $table = $_GET['type'];
+            $table = strtolower($_GET['type']);
             $page = $_GET['page'];
             
             $sql = "SELECT * FROM $table WHERE Ticketid='$id'";
@@ -293,7 +293,7 @@
                 <div id="inter" class="inter" style="width: 50%">
                     <div class="opt">
                         <div class="column mb-3">
-                            <label for="reqsites" class="">Requester Sites*</label>
+                            <label for="reqsites" class="">Requester Sites</label>
                             <div class="">
                                 <input id="reqsites" type="text" value="<?php echo $reqsites ?>"  name="reqsites" class="form-control" oninput="this.value = this.value.toUpperCase();">
                                 <span id="err" style="color: red; display: none"></span>
@@ -657,7 +657,7 @@
                                 <div class="column mb-3">
                                     <label for="newhname" class="">New Item Description</label>
                                     <div class="">
-                                        <input id="newhname" type="text" value="<?php echo $newImpHardName?>"  name="newhname" class="form-control" oninput="this.value = this.value.toUpperCase();" disabled>
+                                        <input id="newhname" type="text" value="<?php echo $newHardName?>"  name="newhname" class="form-control" oninput="this.value = this.value.toUpperCase();" disabled>
                                         <span id="err" style="color: red; display: none">Field cannot be empty</span>
                                     </div>
                                     
@@ -691,6 +691,18 @@
                                 </div>
                             </div>
 
+                            <div class="opt">
+                                <div class="column mb-3">
+                                    <label for="oldhname" class="">Implementor Remarks</label>
+                                    <div class="">
+                                        <input id="oldhname" type="text" name="oldhname" value="<?php echo $softimprem?>" class="form-control" oninput="this.value = this.value.toUpperCase();" disabled>
+                                        <span id="err" style="color: red; display: none">Field cannot be empty</span>
+                                    </div>
+                                
+                                </div>
+                            </div>
+
+
                         </div>
                         <?php
                     }
@@ -701,7 +713,7 @@
                             <div class="column mb-3">
                                 <label for="oldhname" class="">Implementor Remarks</label>
                                 <div class="">
-                                    <input id="oldhname" type="text" name="oldhname" value="<?php echo $oldHardName?>" class="form-control" oninput="this.value = this.value.toUpperCase();" disabled>
+                                    <input id="oldhname" type="text" name="oldhname" value="<?php echo $softimprem?>" class="form-control" oninput="this.value = this.value.toUpperCase();" disabled>
                                     <span id="err" style="color: red; display: none">Field cannot be empty</span>
                                 </div>
                                 
