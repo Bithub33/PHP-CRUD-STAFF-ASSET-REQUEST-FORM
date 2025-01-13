@@ -642,6 +642,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         echo "<tr>
                                                 <td colspan='11' >No records found</td>
                                                 </tr>";
+                                        $_SESSION['query_res'] = [];
                                     }
                                 ?>
                                 
@@ -926,6 +927,8 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                                             <td colspan='7' >No records found</td>
                                                             </tr>";
                                                     }
+
+                                                    $_SESSION['query_res'] = [];
                                                     
                                                 } 
                                     }else{
@@ -1270,6 +1273,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                     echo "<tr>
                                             <td colspan='9' >No records found</td>
                                             </tr>";
+                                    $_SESSION['query_res'] = [];
                                 }
                             ?>
                             
@@ -1641,6 +1645,7 @@ if(isset($_SESSION['userid']) && isset($_SESSION['username'])
                                         echo "<tr>
                                                 <td colspan='5' >No records found</td>
                                                 </tr>";
+                                        $_SESSION['query_users_res'] = [];
                                     }
                                 ?>
                                 
